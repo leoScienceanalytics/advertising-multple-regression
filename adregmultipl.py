@@ -9,6 +9,7 @@ import statsmodels.api as sm
 from sklearn.metrics import mean_squared_error
 
 
+
 #Conectando base de dados
 df = pd.read_csv('advertising.csv')
 df = df.drop(['Unnamed: 0'], axis=1)
@@ -118,4 +119,3 @@ plt.ylabel('Vendas (em Milhões de US$)')
 plt.show()
 
 
-print('Acho que você não me gosta mais, não me da atençãooooo, mas eu vou ai cuidar desse galo')
