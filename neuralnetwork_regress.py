@@ -14,14 +14,27 @@ def rede_neural(X_train, y_train, X_test):
     from keras.models import Sequential 
     from keras.layers import Dense, Dropout 
         
+    #Parâmetros
+    #Camadas
+    neuronio_entrada = float(input('Camada de entrada:'))
+    neuronio_oculta_dense = float(input('Camada Oculta:'))        
+    neuronio_oculta_dropout = float(input('Camada Oculta de perda:'))
+    neuronio_saida = float(input('Camada de saída:'))    
+    funcao_ativacao = str(input('Função de ativação:'))
+    #Compile
+    otimizador = str(input('Optimizer:'))
+    loss = str(input('Perda:'))
+    #Fit
+    epoca = int(input('Épocas:'))
+        
     model = Sequential()
-    model.add(Dense(units=3, activation='relu', input_shape =(4,)))
-    model.add(Dense(units=500, activation='relu'))
-    model.add(Dropout(0.12))
-    model.add(Dense(units=1, activation='relu'))
-    model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mae'])
+    model.add(Dense(units=neuronio_entrada, activation=funcao_ativacao, input_shape =(4,)))
+    model.add(Dense(units=neuronio_oculta_dense, activation=funcao_ativacao))
+    model.add(Dropout(neuronio_oculta_dropout))
+    model.add(Dense(units=neuronio_saida, activation=funcao_ativacao))
+    model.compile(optimizer=otimizador, loss=loss, metrics=['mae'])
     model.summary()
-    model.fit(X_train, y_train, epochs=300, batch_size=10, verbose=True, validation_data=(X_train, y_train))
+    model.fit(X_train, y_train, epochs=epoca, batch_size=10, verbose=True, validation_data=(X_train, y_train))
     nova_prev = model.predict(X_train)
     prev = pd.DataFrame(nova_prev)
     
