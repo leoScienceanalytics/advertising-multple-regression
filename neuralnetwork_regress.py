@@ -64,13 +64,3 @@ def grafico_treino(prev, y_train, prev_test, y_test):
     plt.xlabel('Período')
     plt.ylabel('Valor')
     plt.show()
-    
-    
-file = 'advertising.csv'
-
-X_train, x_test, y_train, y_test = preprocessing(file) #Processamento e Feature engineering
-prev, model, prev_test = rede_neural(X_train, y_train, x_test) #Construção da Rede e previsão
-print(prev)
-
-graph = grafico_treino(prev, y_train, prev_test, y_test) #Gráficos
-print(graph)
