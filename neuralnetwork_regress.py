@@ -24,6 +24,7 @@ def rede_neural(X_train, y_train, X_test):
     #Compile
     otimizador = str(input('Optimizer:'))
     loss = str(input('Perda:'))
+    metrica = str(input('Métrica:'))
     #Fit
     epoca = int(input('Épocas:'))
         
@@ -32,7 +33,7 @@ def rede_neural(X_train, y_train, X_test):
     model.add(Dense(units=neuronio_oculta_dense, activation=funcao_ativacao))
     model.add(Dropout(neuronio_oculta_dropout))
     model.add(Dense(units=neuronio_saida, activation=funcao_ativacao))
-    model.compile(optimizer=otimizador, loss=loss, metrics=['mae'])
+    model.compile(optimizer=otimizador, loss=loss, metrics=[metrica])
     model.summary()
     model.fit(X_train, y_train, epochs=epoca, batch_size=10, verbose=True, validation_data=(X_train, y_train))
     nova_prev = model.predict(X_train)
